@@ -8,6 +8,7 @@
     "start": "next start -p 3000"
   },
   "dependencies": {
+    "@netlify/plugin-nextjs": "^5.13.3",
     "bcryptjs": "^2.4.3",
     "cookie": "^0.5.0",
     "jsonwebtoken": "^9.0.0",
