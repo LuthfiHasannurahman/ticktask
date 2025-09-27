@@ -3,10 +3,9 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/": "pages/index.js",
+  "/api/auth/login": "pages/api/auth/login.js",
   "/dashboard": "pages/dashboard.js",
-  "/todos": "pages/todos.js",
-  "/api/user": "pages/api/user.js",
   "/api/todos": "pages/api/todos.js",
-  "/api/todos/[id]": "pages/api/todos/[id].js",
-  "/api/auth/logout": "pages/api/auth/logout.js"
+  "/api/user": "pages/api/user.js",
+  "/todos": "pages/todos.js"
 }
