@@ -1,19 +1,25 @@
-# TickTask: To-Do List & Reminder
+# 🧭 TickTask — Cozy To-Do List App
 
-## Fitur
-- Register & Login (JWT cookie)
-- Dashboard with progress summary
-- My TickTasks page with create, edit, delete, done/undo
-- Each TickTask has createdAt and optional deadline
-- Stylish green theme, progress bars, badges
+TickTask adalah aplikasi to-do list sederhana berbasis Next.js dan Supabase yang memungkinkan Anda mengatur aktivitas harian dengan tampilan yang simpel, hangat, dan efisien. 💖
 
-## Cara pakai
-1. Ekstrak ZIP dan buka folder di VS Code
-2. Jalankan:
-   ```
-   npm install
-   npm run dev
-   ```
-3. Buka http://localhost:3000
+---
 
-> Notes: Storage uses local JSON files in `/data` (demo only). JWT secret default provided in code; for production use proper env vars and database.
+- 🔐 **Login & Register Custom JWT** — Aman, cepat, dan tanpa Supabase Auth bawaan.  
+- 🗂️ **Manajemen To-Do Lengkap** — Tambah, ubah, hapus, tandai selesai.  
+- 📊 **Dashboard Interaktif** — Menampilkan progress tugas & todo terbaru.  
+- 💾 **Database Supabase** — Penyimpanan data cepat dan realtime.  
+- 🎨 **UI Responsif & Cozy** — Cocok digunakan di desktop maupun mobile.  
+- 🌈 **Dibangun dengan Next.js API Routes + Supabase Client**. 
+
+---
+
+## 🧠 Teknologi yang Digunakan
+
+| Teknologi | Keterangan |
+|------------|-------------|
+| **Next.js 14+** | Framework React modern dengan API Routes |
+| **Supabase** | Database & backend service |
+| **JWT (jsonwebtoken)** | Untuk autentikasi user |
+| **bcryptjs** | Untuk hashing password |
+| **SWR** | Data fetching & revalidation |
+| **cookie** | Manajemen session di sisi server |
