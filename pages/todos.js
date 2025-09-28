@@ -39,13 +39,13 @@ export default function Todos(){
   }
 
   async function toggle(id, done){
-    await fetch('/api/todos/'+id, {
-      method:'PUT',
-      headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({done: !done})
-    });
-    mutate();
-  }
+  await fetch('/api/todos/'+id, {
+    method:'PUT',
+    headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({ is_done: !done }) 
+  });
+  mutate();
+}
 
   async function remove(id){
     if(!confirm('Hapus todo ini?')) return;
@@ -131,16 +131,16 @@ export default function Todos(){
               {todos && todos.length===0 && <div className="small">Belum ada ToDo — tambahkan sekarang.</div>}
               {todos && todos.map(t=>(
                 <div className="todo" key={t.id}>
-                  <div className="left" style={{textDecoration: t.done? 'line-through' : 'none'}}>
+                  <div className="left" style={{textDecoration: t.is_done? 'line-through' : 'none'}}>
                     <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',gap:10}}>
                       <div style={{fontWeight:800}}>{t.title}</div>
-                      <div className="small">{formatDateLocal(t.createdAt)}</div>
+                      <div className="small">{formatDateLocal(t.created_at)}</div>
                     </div>
                     <div className="meta" style={{marginTop:6}}>{t.description}</div>
                     <div style={{marginTop:10, display:'flex',alignItems:'center',gap:10}}>
                       <div className="small">Tenggat:</div>
                       {t.deadline ? (
-                        <div className={"badge " + (t.done? 'done' : (new Date(t.deadline) < new Date() ? 'deadline' : ((new Date(t.deadline)-new Date()) < 1000*60*60*24*2 ? 'upcoming' : '')))}>
+                        <div className={"badge " + (t.is_done? 'done' : (new Date(t.deadline) < new Date() ? 'deadline' : ((new Date(t.deadline)-new Date()) < 1000*60*60*24*2 ? 'upcoming' : '')))}>
                           {new Date(t.deadline).toLocaleString()}
                         </div>
                       ) : <div className="small">-</div>}
@@ -148,7 +148,7 @@ export default function Todos(){
 
                     <div style={{marginTop:10}}>
                       <div className="progress">
-                        <div style={{width: t.done? '100%' : (t.deadline? (new Date() > new Date(t.deadline) ? '50%' : '20%') : '10%')}}></div>
+                        <div style={{width: t.is_done? '100%' : (t.deadline? (new Date() > new Date(t.deadline) ? '50%' : '20%') : '10%')}}></div>
                       </div>
                     </div>
                   </div>
@@ -157,7 +157,7 @@ export default function Todos(){
                     {editId !== t.id ? (
                       <div className="controls">
                         <div className="control-row">
-                          <button className="button" onClick={()=>toggle(t.id, t.done)}>{t.done? 'Undo' : 'Done'}</button>
+                          <button className="button" onClick={()=>toggle(t.id, t.is_done)}>{t.is_done? 'Undo' : 'Done'}</button>
                           <button className="footer-logout" onClick={()=>startEdit(t)}>Edit</button>
                         </div>
                         <div className="control-row">
