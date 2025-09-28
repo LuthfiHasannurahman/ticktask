@@ -3,11 +3,10 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/dashboard": "pages/dashboard.js",
+  "/": "pages/index.js",
   "/api/user": "pages/api/user.js",
   "/api/todos": "pages/api/todos.js",
+  "/api/auth/register": "pages/api/auth/register.js",
   "/todos": "pages/todos.js",
-  "/api/todos/[id]": "pages/api/todos/[id].js",
-  "/api/auth/logout": "pages/api/auth/logout.js",
-  "/": "pages/index.js",
-  "/api/auth/login": "pages/api/auth/login.js"
+  "/api/todos/[id]": "pages/api/todos/[id].js"
 }
