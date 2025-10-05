@@ -1,5 +1,6 @@
 import useSWR from 'swr';
 import Router from 'next/router';
+import { useEffect } from 'react';
 
 const fetcher = (url) => fetch(url).then((r) => r.json());
 
@@ -8,27 +9,26 @@ export default function Dashboard() {
   const { data: todosData } = useSWR('/api/todos', fetcher);
   const todos = Array.isArray(todosData) ? todosData : todosData?.data || [];
 
-  if (userErr)
-    return (
-      <div className="container">
-        <div className="card">
-          Silakan <button onClick={() => Router.push('/')}>login</button>
-        </div>
-      </div>
-    );
+  // ✅ Jika belum login, redirect ke halaman utama
+  useEffect(() => {
+    if (userErr || (user && user.message === 'Not authenticated')) {
+      Router.replace('/');
+    }
+  }, [user, userErr]);
+
   if (!user)
     return (
       <div className="container">
-        <div className="card">Loading...</div>
+        <div className="card">Memuat data...</div>
       </div>
     );
 
-  // ✅ Progress sinkron dengan field 'is_done'
+  // ✅ Progress berdasarkan field 'is_done'
   const total = todos?.length || 0;
   const done = todos?.filter((t) => t.is_done)?.length || 0;
   const progress = total === 0 ? 0 : Math.round((done / total) * 100);
 
-  // ✅ Fungsi bantu agar tanggal tidak invalid
+  // ✅ Format tanggal dengan fallback aman
   const formatDate = (dateString) => {
     if (!dateString) return '-';
     const d = new Date(dateString);
@@ -52,6 +52,7 @@ export default function Dashboard() {
       </div>
 
       <div className="grid">
+        {/* Sidebar */}
         <div className="sidebar card">
           <div>
             <div className="userblock">
@@ -78,6 +79,7 @@ export default function Dashboard() {
           </div>
         </div>
 
+        {/* Main Content */}
         <div>
           {/* Ringkasan ToDo */}
           <div className="card">
